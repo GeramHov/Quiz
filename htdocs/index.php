@@ -15,6 +15,10 @@
             }
         ?>
     </section>
+
+    <section>
+        <a href="./fullfilizer.php">Remplir la DB 'questions'</a>
+    </section>
     
 </body>
 </html>

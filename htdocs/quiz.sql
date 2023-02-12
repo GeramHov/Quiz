@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Feb 11, 2023 at 06:31 AM
+-- Generation Time: Feb 12, 2023 at 08:00 AM
 -- Server version: 10.6.11-MariaDB-1:10.6.11+maria~ubu2004-log
 -- PHP Version: 8.1.14
 
@@ -29,13 +29,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `questions` (
   `id` int(11) NOT NULL,
-  `question` varchar(255) NOT NULL,
-  `true_answer` varchar(255) NOT NULL,
-  `a1` varchar(255) NOT NULL,
-  `a2` varchar(255) NOT NULL,
-  `a3` varchar(255) NOT NULL,
-  `a4` varchar(255) NOT NULL
+  `theme` text NOT NULL,
+  `question` text NOT NULL,
+  `true_answer` text NOT NULL,
+  `a1` text NOT NULL,
+  `a2` text NOT NULL,
+  `a3` text NOT NULL,
+  `a4` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`id`, `theme`, `question`, `true_answer`, `a1`, `a2`, `a3`, `a4`) VALUES
+(1, 'PHP', 'Quel opérateur est utilisé pour vérifier si deux valeurs sont égales et sont du même type ?', '===', '==', '===', '!=', '='),
+(2, 'PHP', 'Quelle commande PHP pouvez-vous utiliser pour remplacer plusieurs commandes \"if-then\" ?', 'La commande \"switch-case\"', 'La commande \"while\"', 'La commande \"for\"', 'La commande \"switch-case\"', 'La commande \"for each\"');
 
 -- --------------------------------------------------------
 
@@ -94,7 +103,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `scores`
