@@ -12,7 +12,7 @@
 
     <?php
     // var_dump($_SESSION);
-    if (!isset($_SESSION['questions']) || $_SESSION['questions'] == ""){
+    if (!isset($_SESSION['questions']) || $_SESSION['questions'] == null){
     require_once('./traitements/connexionToDB.php');
 
     $query = $db->prepare(" SELECT * FROM questions 
@@ -25,23 +25,23 @@
     // var_dump($questions[0]['question']);
     // echo"<br>";
     }
-    // var_dump($_SESSION);
+    var_dump($_SESSION['count']);
     echo "
     <h2>{$_SESSION['questions'][$_SESSION['count']]['question']}</h2>
     <form action='./traitements/answerToScore.php' method='get'>
-        <input type='hidden' value='{$_SESSION['questions'][$_SESSION['count']]['a1']}'>
+        <input type='hidden' name='answer' value='a1'>
         <input type='submit' value='{$_SESSION['questions'][$_SESSION['count']]['a1']}'>
     </form>
     <form action='./traitements/answerToScore.php' method='get'>
-        <input type='hidden' value='{$_SESSION['questions'][$_SESSION['count']]['a2']}'>
+        <input type='hidden' name='answer' value='a2'>
         <input type='submit' value='{$_SESSION['questions'][$_SESSION['count']]['a2']}'>
     </form>
     <form action='./traitements/answerToScore.php' method='get'>
-        <input type='hidden' value='{$_SESSION['questions'][$_SESSION['count']]['a3']}'>
+        <input type='hidden' name='answer' value='a3'>
         <input type='submit' value='{$_SESSION['questions'][$_SESSION['count']]['a3']}'>
     </form>
     <form action='./traitements/answerToScore.php' method='get'>
-        <input type='hidden' value='{$_SESSION['questions'][$_SESSION['count']]['a4']}'>
+        <input type='hidden' name='answer' value='a4'>
         <input type='submit' value='{$_SESSION['questions'][$_SESSION['count']]['a4']}'>
     </form>
     ";
