@@ -11,6 +11,9 @@
     <h1>QUIZ</h1>
     <section id="questions">
         <?php
+        if (isset($_SESSION)){
+            $_SESSION['questions'] = "";
+        }
         if (!isset($_GET['theme'])){
             include_once ('./traitements/choicesEcho.php'); 
         } else {

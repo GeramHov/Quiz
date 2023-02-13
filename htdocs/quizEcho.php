@@ -12,7 +12,7 @@
 
     <?php
     // var_dump($_SESSION);
-    if (!isset($_SESSION['questions'])){
+    if (!isset($_SESSION['questions']) || $_SESSION['questions'] == ""){
     require_once('./traitements/connexionToDB.php');
 
     $query = $db->prepare(" SELECT * FROM questions 
@@ -25,7 +25,7 @@
     // var_dump($questions[0]['question']);
     // echo"<br>";
     }
-    var_dump($_SESSION);
+    // var_dump($_SESSION);
     echo "
     <h2>{$_SESSION['questions'][$_SESSION['count']]['question']}</h2>
     <form action='./traitements/answerToScore.php' method='get'>
