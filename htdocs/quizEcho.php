@@ -1,6 +1,6 @@
 <?php session_start()?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +11,6 @@
 
 
     <?php
-    // var_dump($_SESSION);
     if (!isset($_SESSION['questions']) || $_SESSION['questions'] == null){
     require_once('./traitements/connexionToDB.php');
 
@@ -21,31 +20,45 @@
                             LIMIT 10");
     $query -> execute(['theme' => $_SESSION['theme']]);
     $_SESSION['questions'] = $query->fetchAll();
-    // echo"<br> questions :";
-    // var_dump($questions[0]['question']);
-    // echo"<br>";
     }
-    var_dump($_SESSION['count']);
-    echo "
-    <h2>{$_SESSION['questions'][$_SESSION['count']]['question']}</h2>
-    <form action='./traitements/answerToScore.php' method='get'>
-        <input type='hidden' name='answer' value='a1'>
-        <input type='submit' value='{$_SESSION['questions'][$_SESSION['count']]['a1']}'>
-    </form>
-    <form action='./traitements/answerToScore.php' method='get'>
-        <input type='hidden' name='answer' value='a2'>
-        <input type='submit' value='{$_SESSION['questions'][$_SESSION['count']]['a2']}'>
-    </form>
-    <form action='./traitements/answerToScore.php' method='get'>
-        <input type='hidden' name='answer' value='a3'>
-        <input type='submit' value='{$_SESSION['questions'][$_SESSION['count']]['a3']}'>
-    </form>
-    <form action='./traitements/answerToScore.php' method='get'>
-        <input type='hidden' name='answer' value='a4'>
-        <input type='submit' value='{$_SESSION['questions'][$_SESSION['count']]['a4']}'>
-    </form>
-    ";
 
+    $questionNumberView = $_SESSION['count'] + 1;
+
+    if ($_SESSION['count'] < 10){
+        echo "
+        <h2>{$_SESSION['questions'][$_SESSION['count']]['question']}</h2>
+        <form action='./traitements/answerToScore.php' method='get'>
+            <input type='hidden' name='answer' value='a1'>
+            <input type='hidden' name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>
+            <input type='submit' value='{$_SESSION['questions'][$_SESSION['count']]['a1']}'>
+        </form>
+        <form action='./traitements/answerToScore.php' method='get'>
+            <input type='hidden' name='answer' value='a2'>
+            <input type='hidden' name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>
+            <input type='submit' value='{$_SESSION['questions'][$_SESSION['count']]['a2']}'>
+        </form>
+        <form action='./traitements/answerToScore.php' method='get'>
+            <input type='hidden' name='answer' value='a3'>
+            <input type='hidden' name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>
+            <input type='submit' value='{$_SESSION['questions'][$_SESSION['count']]['a3']}'>
+        </form>
+        <form action='./traitements/answerToScore.php' method='get'>
+            <input type='hidden' name='answer' value='a4'>
+            <input type='hidden' name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>
+            <input type='submit' value='{$_SESSION['questions'][$_SESSION['count']]['a4']}'>
+        </form>
+        <div id='questionNumberView'>
+        Question {$questionNumberView}/10;
+        </div>
+        <div id='scoreView'>
+        Score = {$_SESSION['score']};
+        </div>
+        ";
+    } else {
+        echo"Bravo, vous avez obtenu {$_SESSION['score']} points !";
+        echo"<a href='./index.php'>Retour à l'accueil</a>";
+    };
+    
 
     ?>
 
