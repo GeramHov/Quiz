@@ -1,4 +1,5 @@
 <?php
+
 if (!isset($_GET['theme'])){
     echo '
         <form action="./traitements/choicesEcho.php" method="get">
@@ -16,32 +17,17 @@ if (!isset($_GET['theme'])){
     ';
 } else {
     switch ($_GET['theme']) {
-        case "HTML-CSS":
-            setcookie("theme", "HTML-CSS");
-            echo "Cookie['theme'] = 'HTML-CSS' créé avec succès <br>";
-            echo '<form action="../traitements/choicesEcho.php" method="get">
-            <input type="hidden" name="theme" value="destroy">
-            <input type="submit" value="annuler">
-        </form>';
+        case "HTML-CSS" :
+            header('Location:../index.php?theme=HTML-CSS');
             break;
         case "JavaScript":
-            setcookie("theme", "JavaScript");
-            echo "Cookie['theme'] = 'HTML-CSS' créé avec succès <br>";
-            echo '<form action="../traitements/choicesEcho.php" method="get">
-            <input type="hidden" name="theme" value="destroy">
-            <input type="submit" value="annuler">
-        </form>';
+            header('Location:../index.php?theme=JavaScript');
             break;
         case "PHP":
-            setcookie("theme", "PHP");
-            echo "Cookie['theme'] = 'HTML-CSS' créé avec succès <br>";
-            echo '<form action="../traitements/choicesEcho.php" method="get">
-            <input type="hidden" name="theme" value="destroy">
-            <input type="submit" value="annuler">
-        </form>';
+            header('Location:../index.php?theme=PHP');
             break;
         case "destroy":
-            setcookie("theme");
+            unset($_GET['theme']);
             header('Location:../index.php');
             break;
     }
