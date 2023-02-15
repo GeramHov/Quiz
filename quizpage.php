@@ -187,4 +187,3 @@ if ($_SESSION['count'] < 10){
 <?php
   include_once('PHP/script.php');
 ?>
-
