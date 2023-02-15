@@ -4,19 +4,27 @@
 ?>
 
 <?php
-    if(count($_SESSION['questions']) == 0){
-      require_once('./traitements/config.php');
-  
-      $query = $db->prepare(" SELECT DISTINCT * FROM questions 
-                              WHERE theme = :theme
-                              ORDER BY RAND()
-                              LIMIT 10");
-      $query -> execute(['theme' => $_SESSION['theme']]);
-      $_SESSION['questions'] = $query->fetchAll();
-      }
-  
-      $questionNumberView = $_SESSION['count'] + 1;
+// Initialisation du tablau de 10 questions s'il n'existe pas
+if(count($_SESSION['questions']) == 0){
+  require_once('./traitements/config.php');
 
+  $query = $db->prepare(" SELECT DISTINCT * FROM questions 
+                          WHERE theme = :theme
+                          ORDER BY RAND()
+                          LIMIT 10");
+  $query -> execute(['theme' => $_SESSION['theme']]);
+  $_SESSION['questions'] = $query->fetchAll();
+  }
+
+// initialistaion de variables utiles à l'affichage
+$questionNumberView = $_SESSION['count'] + 1;
+isset($_GET['nextDisplay'])? $nextDisplay = 'block' : $nextDisplay = 'none';
+$a1_color = isset($_GET['a1'])? (($_GET['a1'] == 'success')? 'success' : 'danger') : 'dark';
+$a2_color = isset($_GET['a2'])? (($_GET['a2'] == 'success')? 'success' : 'danger') : 'dark';
+$a3_color = isset($_GET['a3'])? (($_GET['a3'] == 'success')? 'success' : 'danger') : 'dark';
+$a4_color = isset($_GET['a4'])? (($_GET['a4'] == 'success')? 'success' : 'danger') : 'dark';
+
+//Affichage des questions si count <10
 if ($_SESSION['count'] < 10){
   echo " 
   
@@ -31,7 +39,7 @@ if ($_SESSION['count'] < 10){
     <form class='col col-lg-6 col-md-6 col-sm-6 align-items-center text-center mt-4' action='./traitements/answerToScore.php' method='get'>
       <input style='display:none' type='hidden' name='answer' value='a1'>
       <input type='hidden' name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>
-      <button class='bg-light' id='a1' type='submit'>
+      <button class='bg-light text-{$a1_color} border border-3 border-{$a1_color}' id='a1' type='submit'>
       <p>
         {$_SESSION['questions'][$_SESSION['count']]['a1']}
       </p>
@@ -41,7 +49,7 @@ if ($_SESSION['count'] < 10){
     <form class='col col-lg-6 col-md-6 col-sm-6 align-items-center text-center mt-4' action='./traitements/answerToScore.php' method='get'>
       <input type='hidden' name='answer' value='a2'>
       <input type='hidden' name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>
-      <button class='bg-light' id='a2' type='submit'>
+      <button class='bg-light text-{$a2_color} border border-3 border-{$a2_color}' id='a2' type='submit'>
       <p>
        {$_SESSION['questions'][$_SESSION['count']]['a2']}
       </p>
@@ -51,7 +59,7 @@ if ($_SESSION['count'] < 10){
     <form class='col col-lg-6 col-md-6 col-sm-6 align-items-center text-center' action='./traitements/answerToScore.php' method='get'>
       <input type='hidden' name='answer' value='a3'>
       <input type='hidden' name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>
-      <button class='bg-light' id='a3' type='submit'>
+      <button class='bg-light text-{$a3_color} border border-3 border-{$a3_color}' id='a3' type='submit'>
       <p>
         {$_SESSION['questions'][$_SESSION['count']]['a3']}
       </p>
@@ -61,7 +69,7 @@ if ($_SESSION['count'] < 10){
     <form class='col col-lg-6 col-md-6 col-sm-6 align-items-center text-center' action='./traitements/answerToScore.php' method='get'>
       <input type='hidden' name='answer' value='a4'>
       <input type='hidden' name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>
-      <button class='bg-light' id='a4' type='submit'>
+      <button class='bg-light text-{$a4_color} border border-3 border-{$a4_color}' id='a4' type='submit'>
       <p>
         {$_SESSION['questions'][$_SESSION['count']]['a4']}
       </p>
@@ -88,9 +96,10 @@ if ($_SESSION['count'] < 10){
 
 <div class='container d-flex justify-content-end my-2'>
   <div class='wrapper'>
-    <a href='#'>
-      <button class='btn btn-primary p-2'><span>Suivant >> </span></button>
-    </a>
+    <form action='./traitements/answerToScore.php' method='get' >
+      <input type='hidden' name='answer' value='next'>
+      <button type='submit' class='btn btn-primary p-2' style='display:{$nextDisplay}'><span>Suivant >> </span></button>
+    </form>
   </div>
 </div>
   
@@ -98,6 +107,8 @@ if ($_SESSION['count'] < 10){
 
 
 } else {
+  // fin du questionnaire : enregistrement du score et retour à l'index
+  
     echo "
       <div class='container text-center my-5'>
         <div class='col'>
