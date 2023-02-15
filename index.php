@@ -5,29 +5,34 @@
 
 <?php
     if(!isset($_SESSION['pseudo'])) {
-        isset($_GET['login'])? $placeholder="Pseudo existant" : $placeholder="Nom";
+        isset($_GET['login'])? $placeholder="&nbsp;&nbsp;Pseudo existant" : $placeholder="&nbsp;&nbsp;Votre Pseudo ici";
         echo "
         <div class='container text-center my-5 pe-5'>
-        <h1 style='color:white'>Bienvenue à notre coding <span>
-            <img src='IMAGES/Quiz.png' alt='logo'>
-        </span>  ...</h1>
-     </div>
-    
-    <div class='container text-center mt-5 d-flex justify-content-center'>
-        <h4 style='color:white'>
-            Vous êtes nouveau ? Veuillez entrer votre pseudo pour commencer le quiz :
-        </h4>
-        <form action='traitements/signup.php' method='get'>
-            <input type='text' name='pseudo' placeholder='{$placeholder}'>
-            <button class='btn btn-primary' type='submit'>Soumettre</button>
-        </form>
-    </div>
-    <div class='container text-center d-flex justify-content-end pe-5'>
-    <p style='color:white'>Votre pseudo existe déja? &nbsp;&nbsp;&nbsp;</p>
-    <a style='color:white' href='login.php'>Connectez-vous ici</a>
-    </div>
+            <h1 style='color:white'>Bienvenue à notre coding <span>
+                <img src='IMAGES/Quiz.png' alt='logo'>
+                </span>  ...</h1>
+        </div>
+        <div class='container text-center mt-5 d-flex justify-content-center'>
+            <h4 style='color:white'>
+            Vous êtes nouveau ? Veuillez entrer votre pseudo pour commencer le quiz
+            </h4>
+        </div>
+        <div class='container text-center mt-5 d-flex justify-content-center'>
+            <form class='formcontrol' action='traitements/signup.php' method='get'>
+            <input class='rounded-4' style='width: 20vw; height: 4vh' type='text' name='pseudo' placeholder='{$placeholder}'> <br><br>
+            <button class='btn btn-success rounded-0' style='height: 45px; width: 120px' type='submit'>Soumettre</button>
+            </form>
+        </div>
+        <div class='container text-center d-flex justify-content-center pe-5'>
+            <p style='color:white'>Votre pseudo existe déja? &nbsp;&nbsp;&nbsp;</p>
+            <a style='color:white' href='login.php'> <h4> Connectez-vous ici </h4> </a>
+        </div>
+  
         ";
-    } else {
+    }
+    
+    
+        else {
         echo '
         <div class="container text-center my-5 d-flex justify-content-center">
             <h3 style="color:white" class="my-3">Choissisez votre thème en dessous</h3>
@@ -50,13 +55,13 @@
                         <div class='row'>
                         <div class='col'>
                             <form action='../quizpage.php'>
-                            <button class='btn btn-primary' type='submit' value='Confirmer'>Confirmer</button>
+                            <button class='btn btn-success rounded-0 me-4' style='height: 45px; width: 120px' type='submit' value='Confirmer'>Confirmer</button>
                             </form>
                         </div>
                         <div class='col'>
                             <form action='../traitements/choicesEcho.php' method='get'>
                             <input type='hidden' name='theme' value='destroy'>
-                            <button class='btn btn-danger' type='submit' value='Annuler'>Annuler</button>
+                            <button class='btn btn-danger rounded-0 ms-4' style='height: 45px; width: 120px' type='submit' value='Annuler'>Annuler</button>
                             </form>
                         </div>
                         </div>

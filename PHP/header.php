@@ -48,7 +48,7 @@
       <div class="navbar-collapse collapse order-3 dual-collapse2">
           <ul class="navbar-nav ml-auto mx-5">
               <li class="nav-item">
-                  <a class="nav-link" href="profile.php">
+                  <a class="nav-link active" href="profile.php">
                     <?php echo $pseudo; ?>
                   </a>
               </li>

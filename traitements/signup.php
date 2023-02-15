@@ -11,7 +11,7 @@ $pseudo = $_GET['pseudo'];
    if($req->fetchColumn() > 0)
    {
     //   echo 'Pseudo déjà utilisé !';
-        header('Location: ../login.php');
+        header('Location: ../login.php?pseudo=' . $pseudo);
    }
    else
    {
