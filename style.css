@@ -40,3 +40,43 @@ h4{
   font-size: larger;
 }
 
+nav ul li a img:hover{
+  transform: scale(1.2);
+  transition: 0.3s ease;
+}
+
+nav ul li a img{
+  transform: scale(1.0);
+  transition: 0.3s ease;
+}
+
+a{
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+    .navbar-toggler-icon{
+      position: absolute;
+      top: 2vh;
+    }
+    .dropdown {
+      display: none;
+    }
+    input{
+      position: absolute;
+      width: 50vw !important;
+      right: 20vw !important;
+    }
+    .themebutton img{
+      width: 60px;
+      height: 60px;
+    }
+    #logos{
+      position: absolute;
+      left: 14vw;
+    }
+}

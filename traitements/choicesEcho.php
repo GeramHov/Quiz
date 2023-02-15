@@ -2,11 +2,11 @@
 
 if (!isset($_GET['theme'])){
     echo '
-        <div class="row mt-5">
-        <div class="col col-lg-4 col-md-4 col-sm-4 ">
+        <div id="logos" class="row mt-5">
+        <div class="col col-lg-4 col-md-4 col-sm-4">
         <form action="./traitements/choicesEcho.php" method="get">
             <input type="hidden" name="theme" value="HTML-CSS">
-            <button type="submit" value="HTML-CSS">
+            <button class="themebutton" type="submit" value="HTML-CSS">
             <img src="IMAGES/coding.png" alt="" height="120" width="120">
             </button>
         </form>
@@ -14,7 +14,7 @@ if (!isset($_GET['theme'])){
         <div class="col col-lg-4 col-md-4 col-sm-4">
         <form action="./traitements/choicesEcho.php" method="get">
             <input type="hidden" name="theme" value="JavaScript">
-            <button type="submit" value="JavaScript">
+            <button class="themebutton" type="submit" value="JavaScript">
             <img src="IMAGES/js.png" alt="" height="120" width="120">
             </button>
         </form>
@@ -22,7 +22,7 @@ if (!isset($_GET['theme'])){
         <div class="col col-lg-4 col-md-4 col-sm-4">
         <form action="./traitements/choicesEcho.php" method="get">
             <input type="hidden" name="theme" value="PHP">
-            <button type="submit" value="PHP">
+            <button class="themebutton" type="submit" value="PHP">
             <img src="IMAGES/php.png" alt="" height="120" width="120">
             </button>
         </form>
