@@ -27,12 +27,23 @@ $a4_color = isset($_GET['a4'])? (($_GET['a4'] == 'success')? 'success' : 'danger
 //Affichage des questions si count <10
 if ($_SESSION['count'] < 10){
   echo "
+  <div class='flex-column justify-content-center text-center mb-4'>
+    <div id='questionNumberView'>
+      <h3 style='color:white'>
+        Question {$questionNumberView}/10
+      </h3>
+    </div>
+    <div id='scoreView'>
+      <h3 style='color:white'>
+        Score = {$_SESSION['score']}
+      </h3>
+    </div>
+  </div>
   <div id='question' class='container bg-light text-center d-flex justify-content-center align-items-center text-center my-3'>
     <h3>
       {$_SESSION['questions'][$_SESSION['count']]['question']}
     </h3>
   </div>
-
   <div id='answer' class='container text-center d-flex flex-wrap justify-content-center align-items-center'>
     
     <form class='col col-lg-6 col-md-6 col-sm-6 align-items-center text-center mt-4' action='./traitements/answerToScore.php' method='get'>
@@ -44,7 +55,6 @@ if ($_SESSION['count'] < 10){
       </p>
       </button>
     </form>
-
     <form class='col col-lg-6 col-md-6 col-sm-6 align-items-center text-center mt-4' action='./traitements/answerToScore.php' method='get'>
       <input type='hidden' name='answer' value='a2'>
       <input type='hidden' name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>
@@ -54,7 +64,6 @@ if ($_SESSION['count'] < 10){
       </p>
     </button>
     </form>
-
     <form class='col col-lg-6 col-md-6 col-sm-6 align-items-center text-center' action='./traitements/answerToScore.php' method='get'>
       <input type='hidden' name='answer' value='a3'>
       <input type='hidden' name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>
@@ -64,7 +73,6 @@ if ($_SESSION['count'] < 10){
       </p>
       </button>
     </form>
-
     <form class='col col-lg-6 col-md-6 col-sm-6 align-items-center text-center' action='./traitements/answerToScore.php' method='get'>
       <input type='hidden' name='answer' value='a4'>
       <input type='hidden' name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>
@@ -74,31 +82,12 @@ if ($_SESSION['count'] < 10){
       </p>
       </button>
     </form>
-
-
   </div>
-
-  <div class='flex-column justify-content-center text-center my-3'>
-    <div id='questionNumberView'>
-      <h4>
-        Question {$questionNumberView}/10
-      </h4>
-    </div>
-
-    <div id='scoreView'>
-      <h4>
-        Score = {$_SESSION['score']}
-      </h4>
-    </div>
-  </div>
-
-  <div class='container d-flex justify-content-end my-2'>
-    <div class='wrapper'>
+  <div class='container d-flex justify-content-center my-1'>
       <form action='./traitements/answerToScore.php' method='get' >
-        <input type='hidden' name='answer' value='next'>
-        <button type='submit' class='btn btn-primary p-2' style='display:{$nextDisplay}'><span>Suivant >> </span></button>
+        <input type='hidden' name='answer' value='next'> <br>
+        <button style='margin-left:7vw; height: 60px; width: 150px' type='submit' class='btn btn-success p-2 rounded-0' style='display:{$nextDisplay}'>Suivant >></button>
       </form>
-    </div>
   </div>
     
   ";
@@ -114,24 +103,83 @@ if ($_SESSION['count'] < 10){
                       'user_id' => $_SESSION['user_id'],
                       'theme' => $_SESSION['theme']
                     ]);
-
-
-  echo "
-    <div class='container text-center my-5'>
-      <div class='col'>
-        <h4 style='color:white'>
-          Bravo, vous avez obtenu {$_SESSION['score']} points !
-        </h4>
+  
+    if($_SESSION['score'] == 0){
+        echo "
+          <div class='container text-center'>
+            <div class='col my-5'>
+            <img src='IMAGES/sad.png' alt='sad' width='120' height='120'>
+                <h2 style='color:white' class='my-5'>
+                   Vous avez obtenu {$_SESSION['score']} point ...  Entrainez-vous avec coding WWE champion du monde <strong> Aleeeeeexandre Loretzin Suuuuperslaam </strong>!
+                </h2>
+            </div>
+          </div>
+          <div class='col d-flex justify-content-center'>
+          <a style='text-decoration:none' href='./index.php'>
+            <button class='btn btn-success rounded-0' style='height: 45px; width: 150px'>
+              Retour à l'accueil
+            </button>
+          </a>
+        </div>
+        ";
+    }  elseif($_SESSION['score'] < 70) {
+      echo "
+      <div class='container text-center'>
+        <div class='col my-5'>
+          <img src='IMAGES/notbad.jpg' alt='notbad' width='350' height='350'>
+          <h4 style='color:white' class='my-5'>
+            Vous avez obtenu {$_SESSION['score']} points ! Entrainez vos skillz avec < Garage 404 >
+          </h4>
+        </div>
       </div>
-    </div>
-    <div class='col d-flex justify-content-center'>
-      <a style='text-decoration:none' href='./index.php'>
-        <button class='btn btn-primary'>
-          Retour à l'accueil
-        </button>
-      </a>
-    </div>
+      <div class='col d-flex justify-content-center'>
+        <a style='text-decoration:none' href='./index.php'>
+          <button class='btn btn-success rounded-0' style='height: 45px; width: 150px'>
+            Retour à l'accueil
+          </button>
+        </a>
+      </div>
   ";
+    } elseif($_SESSION['score'] < 100){
+      echo "
+      <div class='container text-center'>
+        <div class='col my-5'>
+          <img src='IMAGES/good.gif' alt='good' width='350' height='350'>
+          <h4 style='color:white' class='my-5'>
+            Bravo vous avez obtenu {$_SESSION['score']} points ! < Garage 404 > rulez!
+          </h4>
+        </div>
+      </div>
+      <div class='col d-flex justify-content-center'>
+        <a style='text-decoration:none' href='./index.php'>
+          <button class='btn btn-success rounded-0' style='height: 45px; width: 150px'>
+            Retour à l'accueil
+          </button>
+        </a>
+      </div>
+  ";
+    }
+    
+    else {
+      echo "
+        <div class='container text-center'>
+          <div class='col'>
+          <script src='https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js'></script>
+          <lottie-player class='container text-center' src='https://assets10.lottiefiles.com/packages/lf20_laGIqKVpcD.json'  background='transparent'  speed='1'  style='width: 400px; height: 400px;' loop autoplay></lottie-player>
+            <h4 style='color:white'>
+              Bravo, vous avez obtenu {$_SESSION['score']} points ! Flawless victory!
+            </h4>
+          </div>
+        </div>
+        <div class='col d-flex justify-content-center'>
+          <a style='text-decoration:none' href='./index.php'>
+            <button class='btn btn-success rounded-0' style='height: 45px; width: 150px'>
+              Retour à l'accueil
+            </button>
+          </a>
+        </div>
+    ";
+    }
 };
 
 ?>
