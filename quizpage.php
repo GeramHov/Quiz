@@ -1,6 +1,6 @@
 <?php
-    session_start();
     include_once('PHP/header.php');
+    include_once('PHP/script.php');
 ?>
 
 <?php

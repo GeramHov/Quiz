@@ -1,3 +1,13 @@
+<?php
+  session_start();
+  include_once('traitements/config.php');
+  if(isset($_SESSION['pseudo'])){
+    $pseudo = $_SESSION['pseudo'];
+  } else {
+    $pseudo = '';
+  }
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -19,9 +29,18 @@
           </ul>
       </div>
       <div class="mx-auto order-0">
-          <a class="navbar-brand mx-auto" href="#">
-            <img src="IMAGES/user.png" alt="user" width="30" height="30">
-          </a>
+        <div class="dropdown">
+            <a class="navbar-brand mx-auto" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="IMAGES/user.png" alt="user" width="30" height="30">
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="profile.php">Profil</a></li>
+                <li><a class="dropdown-item" href="login.php">Connexion</a></li>
+                <li><a class="dropdown-item" href="traitements/user_logout.php">Sortie</a></li>
+              </ul>
+        </div>
+          
+        
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
               <span class="navbar-toggler-icon"></span>
           </button>
@@ -29,8 +48,14 @@
       <div class="navbar-collapse collapse order-3 dual-collapse2">
           <ul class="navbar-nav ml-auto mx-5">
               <li class="nav-item">
-                  <a class="nav-link" href="#">Gueram</a>
+                  <a class="nav-link" href="profile.php">
+                    <?php echo $pseudo; ?>
+                  </a>
               </li>
           </ul>
       </div>
 </nav>
+
+
+
+

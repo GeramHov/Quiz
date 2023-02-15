@@ -1,6 +1,6 @@
 <?php
-    session_start();
     include_once('PHP/header.php');
+    include_once('PHP/script.php');
 ?>
 
 <?php
@@ -13,14 +13,18 @@
         </span>  ...</h1>
      </div>
     
-    <div class='container text-center my-5 d-flex justify-content-center'>
-        <h2 style='color:white'>
-            Veuillez entrer votre pseudo :
-        </h2>
-        <form action='traitements/login.php' method='get'>
+    <div class='container text-center mt-5 d-flex justify-content-center'>
+        <h4 style='color:white'>
+            Vous êtes nouveau ? Veuillez entrer votre pseudo pour commencer le quiz :
+        </h4>
+        <form action='traitements/signup.php' method='get'>
             <input type='text' name='pseudo' placeholder='{$placeholder}'>
             <button class='btn btn-primary' type='submit'>Soumettre</button>
         </form>
+    </div>
+    <div class='container text-center d-flex justify-content-end pe-5'>
+    <p style='color:white'>Votre pseudo existe déja? &nbsp;&nbsp;&nbsp;</p>
+    <a style='color:white' href='login.php'>Connectez-vous ici</a>
     </div>
         ";
     } else {
