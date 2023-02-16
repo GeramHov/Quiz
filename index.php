@@ -27,7 +27,7 @@ if(!isset($_SESSION['pseudo'])) {
             <form action='traitements/user_login.php' method='get'>
                 <input class='rounded-4' type='text' style='width: 20vw; height: 4vh' name='pseudo'  value='" . (isset($_GET['pseudo'])? $_GET['pseudo'] : '') . "' placeholder='{$placeholder}'>
                 <br> <br>
-                <button class='btn btn-success rounded-0' style='height: 45px; width: 120px' type='submit'>Soumettre</button>
+                <button id='mainbutton' class='btn btn-success rounded-0' style='height: 45px; width: 120px' type='submit'>Soumettre</button>
             </form>
         </div>
 

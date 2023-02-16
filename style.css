@@ -4,6 +4,19 @@ body{
   background-image: url(IMAGES/Jz6bAs.webp);
 }
 
+#burgermenu {
+  width: 60vw;
+  height: 100vh;
+  z-index: 2;
+  background-color: black;
+  position: absolute;
+  right: 140vw;
+  transition: 0.3s ease-in;
+}
+
+hr{
+  color: white;
+}
 
 nav {
   height: 10vh;
@@ -33,7 +46,6 @@ form{
 
 h1, h2, h3, p {
   font-family: 'Fira Code', monospace;
-  color:white;
 }
 
 h4{
@@ -60,9 +72,6 @@ a:hover{
   text-decoration: underline;
 }
 
-
-
-
 .signUpForm {
   width: 40vw;
 }
@@ -80,14 +89,6 @@ a:hover{
   border : 2px solid rgb(0, 156, 34);
   border-radius:50%;
 }
-
-
-#bestScores{
-  border: 1px solid white;
-  position: relative;
-  bottom: 85px;
-}
-
 
 .podium {
   display: flex;
@@ -124,6 +125,10 @@ a:hover{
   background: #00D100;
 }
 
+svg{
+  width: 50vw;
+  height: 60vh;
+}
 
 body {
   background-color: #1D1F20;
@@ -164,6 +169,7 @@ body {
     .navbar-toggler-icon{
       position: absolute;
       top: 2vh;
+      right: 1vw;
     }
     .dropdown {
       display: none;
@@ -171,8 +177,29 @@ body {
     input{
       position: absolute;
       width: 50vw !important;
-      right: 20vw !important;
+      right: 25vw !important;
     }
+    #mainbutton{
+      position: absolute;
+      left: 36vw
+    }
+    h1{
+      font-size: 20px;
+    }
+    h1 img{
+      position: relative;
+      left: 12vw
+    }
+    p{
+      position: absolute;
+      bottom: 21vh;
+      margin-left: 20vw;
+    }
+    h4{
+      bottom: 20vh;
+      margin-left: 10vw;
+    }
+
     .themebutton img{
       width: 60px;
       height: 60px;
@@ -180,5 +207,23 @@ body {
     #logos{
       position: absolute;
       left: 14vw;
+    }
+    div .podium{
+      display: none;
+    }
+    form#scoreform{
+      display: none;
+    }
+    #topscore{
+      display: none;
+    }
+    svg{
+      width: 96vw;
+      height: auto;
+    }
+    form#myscore{
+      display: flex;
+      justify-content: center;
+      padding-left: 20vw;
     }
 }

@@ -22,15 +22,6 @@ else
                         'avatar' => $_GET['avatar']
                         ]);
 
-$dataBaseUsers = $db -> prepare("SELECT * FROM users WHERE pseudo = :pseudo");
-    $dataBaseUsers -> execute   ([
-                                "pseudo" => $_GET['pseudo'],
-                                ]);
-    $resultUsers = $dataBaseUsers -> fetch();
-
-    $_SESSION['pseudo'] = $_GET['pseudo'];
-    $_SESSION['user_id'] = $resultUsers['id'];
-    $_SESSION['avatar'] = $resultUsers['avatar'];
 
     $dataBaseUsers = $db -> prepare("SELECT * FROM users WHERE pseudo = :pseudo");
     $dataBaseUsers -> execute   ([
@@ -41,6 +32,9 @@ $dataBaseUsers = $db -> prepare("SELECT * FROM users WHERE pseudo = :pseudo");
     $_SESSION['pseudo'] = $_GET['pseudo'];
     $_SESSION['user_id'] = $resultUsers['id'];
     $_SESSION['avatar'] = $resultUsers['avatar'];
+
+
+
 
     header('Location: ../index.php');
 }
