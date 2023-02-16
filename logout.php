@@ -5,7 +5,7 @@
 
 <div class="container text-ceneter d-flex justify-content-center my-5">
     <h2 style="color:white">
-        À bientôt $pseudo ...
+        À bientôt <?=$_SESSION['pseudo']?> ...
     </h2>
 </div>
 <div class="container text-ceneter d-flex justify-content-center">

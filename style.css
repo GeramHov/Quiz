@@ -58,6 +58,28 @@ a:hover{
   text-decoration: underline;
 }
 
+
+/* Choix de l'avatar */
+.signUpForm {
+  width: 40vw;
+}
+.avatarInputs {
+  display: none;
+}
+
+.avatarLabels img {
+  width : 6vw;
+  height: 6vw;
+  border-radius:50%;
+}
+
+.avatarInputs:checked + label {
+  border : 2px solid rgb(0, 156, 34);
+  border-radius:50%;
+}
+/* fin choix de l'avatar */
+
+
 @media (max-width: 767px) {
     .navbar-toggler-icon{
       position: absolute;
