@@ -18,7 +18,7 @@ if ($_GET['answer'] != 'next'){
     $a3 = ($response['a3'] == $response['true_answer'])? "a3=success" : "a3=failed";
     $a4 = ($response['a4'] == $response['true_answer'])? "a4=success" : "a4=failed";
 
-    header('Location: ../quizpage.php?nextDisplay=true&'.$a1.'&'.$a2.'&'.$a3.'&'.$a4);
+    header('Location: ../quizpage.php?nextDisplay=ok&timer=none&'.$a1.'&'.$a2.'&'.$a3.'&'.$a4);
     exit();
 } else {
     $_SESSION['count']++;
