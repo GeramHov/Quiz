@@ -2,24 +2,45 @@
 session_start();
 include_once "config.php";
 
-$_SESSION['pseudo'] = $_GET['pseudo'];
-$dataBaseUsers = $db -> prepare("SELECT * FROM users WHERE pseudo = :pseudo");
-$dataBaseUsers -> execute([
-    "pseudo" => $_SESSION['pseudo'],
-]);
-$resultUsers = $dataBaseUsers -> fetch();
+// vérification si pseudo existant
+$req = $db->prepare("SELECT count(id) FROM users WHERE LOWER(pseudo) = :pseudo");
+$req->execute   ([
+                'pseudo' => strtolower($_GET['pseudo'])
+                ]);
 
-$_SESSION['user_id'] = $resultUsers['id'];
+if($req->fetchColumn() > 0)
+{
+//  Pseudo connu
+   
+    $dataBaseUsers = $db -> prepare("SELECT * FROM users WHERE pseudo = :pseudo");
+    $dataBaseUsers -> execute   ([
+                                "pseudo" => $_GET['pseudo'],
+                                ]);
+    $resultUsers = $dataBaseUsers -> fetch();
 
-$dataBaseScore = $db -> prepare("SELECT * FROM scores WHERE user_id = :user_id ORDER BY score LIMIT 1");
-$dataBaseScore -> execute([
-    "user_id" => $_SESSION['user_id']
-]);
-$resultScores = $dataBaseScore -> fetch();
+    $_SESSION['pseudo'] = $_GET['pseudo'];
+    $_SESSION['user_id'] = $resultUsers['id'];
+    $_SESSION['avatar'] = $resultUsers['avatar'];
 
-if(!empty($resultScores)) {
-    $_SESSION['max_score'] = $resultScores['score'];
+    $dataBaseScore = $db -> prepare("SELECT * FROM scores WHERE user_id = :user_id ORDER BY score LIMIT 1");
+    $dataBaseScore -> execute([
+        "user_id" => $_SESSION['user_id']
+    ]);
+    $resultScores = $dataBaseScore -> fetch();
+
+    if(!empty($resultScores)) {
+        $_SESSION['max_score'] = $resultScores['score'];
+    }
+
+    header('Location: ../index.php');
+}
+else
+{
+// Pseudo inconnu    $request = $db->prepare("INSERT INTO users (pseudo, avatar) VALUES (:pseudo, :avatar)");
+
+    header('Location: ../index.php?unknow=ok');
 }
 
-header('Location: ../index.php')
+
+
 ?>
