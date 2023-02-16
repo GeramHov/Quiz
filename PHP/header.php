@@ -34,7 +34,12 @@
                 <img src="IMAGES/user.png" alt="user" width="30" height="30">
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="profile.php">Profil</a></li>
+                <?php 
+                  if(isset($_SESSION['pseudo'])){
+                    echo 
+                          ' <li><a class="dropdown-item" href="profile.php">Profil</a></li> ';
+                  }
+                ?>
                 <li><a class="dropdown-item" href="login.php">Connexion</a></li>
                 <li><a class="dropdown-item" href="traitements/user_logout.php">Sortie</a></li>
               </ul>
