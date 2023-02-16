@@ -4,6 +4,7 @@ body{
   background-image: url(IMAGES/Jz6bAs.webp);
 }
 
+
 nav {
   height: 10vh;
   background-color: black;
@@ -30,8 +31,9 @@ form{
   height: 20vh;
 }
 
-h1, h2, h3 {
+h1, h2, h3, p {
   font-family: 'Fira Code', monospace;
+  color:white;
 }
 
 h4{
@@ -57,6 +59,49 @@ a{
 a:hover{
   text-decoration: underline;
 }
+
+#bestScores{
+  border: 1px solid white;
+  position: relative;
+  bottom: 85px;
+}
+
+
+.podium {
+  display: flex;
+  align-items: flex-end;
+}
+
+.podium__item {
+  width: 200px;
+}
+
+
+.podium__city {
+  text-align: center;
+  padding: 0 .5rem;
+}
+
+.podium__number {
+  width: 27px;
+  height: 75px;
+}
+
+.podium .first {
+  min-height: 300px;
+  background: #007500;
+}
+
+.podium .second {
+  min-height: 200px;
+  background: #00A300;
+}
+
+.podium .third {
+  min-height: 100px;
+  background: #00D100;
+}
+
 
 @media (max-width: 767px) {
     .navbar-toggler-icon{
