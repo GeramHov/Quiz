@@ -130,6 +130,40 @@ svg{
   height: 60vh;
 }
 
+body {
+  background-color: #1D1F20;
+}
+
+.containerTimer {
+  margin-top: 40px;
+  padding-top: 20px;
+  /* background-color: #beb */
+}
+.verticalTimer {
+  display: inline-block;
+  width: 20%;
+  height: 40px;
+  border-radius : 5px;
+}
+.verticalTimer {
+  box-shadow: inset 0px 4px 6px #ccc;
+}
+.progress-barTimer {
+  display: inline-block;
+  width: 100%;
+  height: 40px;
+  background-color: #198754;
+  border-radius : 5px;
+  box-shadow: inset 0px 4px 6px rgba(100,100,100,0.6);
+  animation : 10s linear timer;
+}
+
+@keyframes timer {
+  from { width : 0%; }
+  to   { width : 100%; }
+}
+
+
 
 @media (max-width: 767px) {
     .navbar-toggler-icon{

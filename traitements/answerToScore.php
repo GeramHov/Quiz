@@ -10,7 +10,7 @@ if ($_GET['answer'] != 'next'){
     $response = $query -> fetch();
 
     if ($response[$_GET['answer']] == $response['true_answer']){
-        $_SESSION['score']+=10;
+        $_SESSION['score']+= 10-(time() - $_GET['time']);
     }
 
     $a1 = ($response['a1'] == $response['true_answer'])? "a1=success" : "a1=failed";
@@ -18,7 +18,7 @@ if ($_GET['answer'] != 'next'){
     $a3 = ($response['a3'] == $response['true_answer'])? "a3=success" : "a3=failed";
     $a4 = ($response['a4'] == $response['true_answer'])? "a4=success" : "a4=failed";
 
-    header('Location: ../quizpage.php?nextDisplay=true&'.$a1.'&'.$a2.'&'.$a3.'&'.$a4);
+    header('Location: ../quizpage.php?nextDisplay=ok&timer=none&'.$a1.'&'.$a2.'&'.$a3.'&'.$a4);
     exit();
 } else {
     $_SESSION['count']++;
