@@ -35,7 +35,7 @@
         else {
         echo '
         <div class="container text-center my-5 d-flex justify-content-center">
-            <h3 style="color:white" class="my-3">Choissisez votre thème en dessous</h3>
+            <h3 style="color:white" class="my-3">Choisissez votre thème en dessous</h3>
         </div>
         
         <section id="questions" class="container text-center my-5 d-flex "> ';
