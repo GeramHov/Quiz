@@ -138,8 +138,7 @@ body {
   display: inline-block;
   width: 20%;
   height: 40px;
-  -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
-  transform: rotate(-90deg);
+  border-radius : 5px;
 }
 .verticalTimer {
   box-shadow: inset 0px 4px 6px #ccc;
@@ -148,9 +147,8 @@ body {
   display: inline-block;
   width: 100%;
   height: 40px;
-  background-color: #00d1008f;
-  /* -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
-  /* transform: rotate(-90deg); */
+  background-color: #198754;
+  border-radius : 5px;
   box-shadow: inset 0px 4px 6px rgba(100,100,100,0.6);
   animation : 10s linear timer;
 }

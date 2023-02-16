@@ -126,7 +126,7 @@
             if (isset($_GET['userChoice'])) {
             $query = $db->prepare(" SELECT *, DATE_FORMAT(date,'%d/%m') AS niceDate  FROM scores 
                                     WHERE user_id = :user_id AND questions_theme = :theme
-                                    ORDER BY date
+                                    ORDER BY date DESC
                                     LIMIT 16
                                 ");
             $query -> execute   ([
@@ -136,7 +136,7 @@
         } else {
             $query = $db->prepare(" SELECT *, DATE_FORMAT(date,'%d/%m') AS niceDate FROM scores 
                                     WHERE user_id = :user_id
-                                    ORDER BY date
+                                    ORDER BY date DESC
                                     LIMIT 16
                                 ");
             $query -> execute   ([
@@ -144,7 +144,7 @@
                                 ]);
         }
     
-        $scores = $query->fetchAll();
+        $scores = array_reverse($query->fetchAll());
         $i = 170;
 
 

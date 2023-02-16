@@ -10,7 +10,7 @@ if ($_GET['answer'] != 'next'){
     $response = $query -> fetch();
 
     if ($response[$_GET['answer']] == $response['true_answer']){
-        $_SESSION['score']+=10;
+        $_SESSION['score']+= 10-(time() - $_GET['time']);
     }
 
     $a1 = ($response['a1'] == $response['true_answer'])? "a1=success" : "a1=failed";

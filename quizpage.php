@@ -26,11 +26,13 @@ $a4_color = isset($_GET['a4'])? (($_GET['a4'] == 'success')? 'success' : 'danger
 
 //Affichage des questions si count <10
 if ($_SESSION['count'] < 10){
+  $currentTime = time();
   //Timer 
   if (!isset($_GET['timer'])){
     // clique sur réponse fausse au bout de x secondes
     echo "
       <form action='./traitements/answerToScore.php' method='get' style='display:none'>
+        <input type='text' name='time' value='{$currentTime}'>
         <input style='display:none' name='answer' value='a5'>
         <input  name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>
         <button class='defaultButton' id='a5' type='submit'></button>
@@ -42,15 +44,6 @@ if ($_SESSION['count'] < 10){
               defaultButton.click()
         } 
       </script>
-    ";
-    // div avec animation css "timer"
-    echo "
-      <div class='containerTimer'>
-        <div class='progressTimer verticalTimer'>
-          <div class='progress-barTimer progress-bar-info' role='progressbar'>
-          </div>  
-        </div>
-      </div>
     ";
   };
 
@@ -80,6 +73,7 @@ if ($_SESSION['count'] < 10){
     <div id='answer' class='container text-center d-flex flex-wrap justify-content-center align-items-center'>
   
       <form class='col col-lg-6 col-md-6 col-sm-6 align-items-center text-center mt-4' action='./traitements/answerToScore.php' method='get'>
+        <input type='hidden' name='time' value='{$currentTime}'>
         <input style='display:none' type='hidden' name='answer' value='a1'>
         <input type='hidden' name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>
         <button class='bg-light text-{$a1_color} border border-3 border-{$a1_color}' id='a1' type='submit'>
@@ -90,6 +84,7 @@ if ($_SESSION['count'] < 10){
       </form>
 
       <form class='col col-lg-6 col-md-6 col-sm-6 align-items-center text-center mt-4' action='./traitements/answerToScore.php' method='get'>
+        <input type='hidden' name='time' value='{$currentTime}'>  
         <input type='hidden' name='answer' value='a2'>
         <input type='hidden' name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>
         <button class='bg-light text-{$a2_color} border border-3 border-{$a2_color}' id='a2' type='submit'>
@@ -100,6 +95,7 @@ if ($_SESSION['count'] < 10){
       </form>
 
       <form class='col col-lg-6 col-md-6 col-sm-6 align-items-center text-center' action='./traitements/answerToScore.php' method='get'>
+        <input type='hidden' name='time' value='{$currentTime}'>
         <input type='hidden' name='answer' value='a3'>
         <input type='hidden' name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>
         <button class='bg-light text-{$a3_color} border border-3 border-{$a3_color}' id='a3' type='submit'>
@@ -110,6 +106,7 @@ if ($_SESSION['count'] < 10){
       </form>
 
       <form class='col col-lg-6 col-md-6 col-sm-6 align-items-center text-center' action='./traitements/answerToScore.php' method='get'>
+        <input type='hidden' name='time' value='{$currentTime}'>
         <input type='hidden' name='answer' value='a4'>
         <input type='hidden' name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>
         <button class='bg-light text-{$a4_color} border border-3 border-{$a4_color}' id='a4' type='submit'>
@@ -123,8 +120,17 @@ if ($_SESSION['count'] < 10){
     <div class='container d-flex justify-content-center my-1'>
       <form action='./traitements/answerToScore.php' method='get' style='display:{$nextDisplay}'>
         <input type='hidden' name='answer' value='next'> <br>
-        <button style='margin-left:7vw; height: 60px; width: 150px' type='submit' class='btn btn-success p-2 rounded-0'>Suivant >></button>
+        <button style='margin-left:6vw; height: 60px; width: 150px' type='submit' class='btn btn-success p-2 rounded-0'>Suivant >></button>
       </form>
+    </div>
+  ";
+  // div avec animation css "timer"
+  echo "
+    <div class='containerTimer container d-flex justify-content-center my-1'>
+      <div class='progressTimer verticalTimer'>
+        <div class='progress-barTimer progress-bar-info' role='progressbar'>
+        </div>  
+      </div>
     </div>
   ";
 
