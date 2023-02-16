@@ -10,7 +10,7 @@
     </div>
 
     <div class='container text-center mt-5 d-flex justify-content-center'>
-        <h4 style='color:white'>
+        <h4 class="m-1" style='color:white'>
             Vous êtes nouveau ? Veuillez <strong><u>entrer votre pseudo</u></strong> et <strong><u>choisir un avatar</u></strong> pour commencer le quiz
         </h4>
     </div>

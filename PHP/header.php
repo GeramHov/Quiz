@@ -18,6 +18,45 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="burgermenu" class="flex-column justify-content-center align-items-center text-start">
+        <div class="col d-flex justify-content-center my-5">
+        <img class="rounded-5" src="<?php 
+                if(isset($_SESSION['avatar'])) {
+                  echo $_SESSION['avatar']; 
+                } else {
+                  echo 'IMAGES/user.png';
+                }
+                ?>" alt="avatar" width="60" height="60">
+        </div>
+        
+        <div class="col d-flex justify-content-center my-4">
+        <?php 
+                  if(isset($_SESSION['pseudo'])){
+                    echo ' <hr><a class="display-5" style="text-decoration: none; color:white; font-size: 30px" href="profile.php">Profil</a>
+                     ';
+                  }
+                ?>
+        </div>
+        <hr>
+        <div class="col d-flex justify-content-center my-4">
+              <a style="text-decoration: none; color:white; font-size: 30px" href="login.php">Connexion</a>
+        </div>
+        <hr>
+        <div class="col d-flex justify-content-center my-4">
+              <a class="display-5" style="text-decoration: none; color:white; font-size: 30px" href="traitements/user_logout.php">Sortie</a>
+        </div>
+        <hr>
+        <div class="col d-flex justify-content-center my-4">
+        <a class="nav-link p-0" href="index.php">
+                    <img src="IMAGES/Quiz.png" alt="logo" width="80" height="40">
+                  </a>
+        </div>
+        <div class="col d-flex justify-content-start mt-5">
+              <p class="ms-3" style="color: white"><i> Gueram & Renaud partnership <br> All rights reserved ©  2023</i></p>
+        </div>
+    </div>
+
+
 <nav class="navbar navbar-expand-md navbar-dark">
       <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
           <ul class="navbar-nav mr-auto mx-5">
@@ -31,7 +70,13 @@
       <div class="mx-auto order-0">
         <div class="dropdown">
             <a class="navbar-brand mx-auto" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="IMAGES/user.png" alt="user" width="30" height="30">
+                <img class="rounded-5" src="<?php 
+                if(isset($_SESSION['avatar'])) {
+                  echo $_SESSION['avatar']; 
+                } else {
+                  echo 'IMAGES/user.png';
+                }
+                ?>" alt="user" width="40" height="40">
               </a>
               <ul class="dropdown-menu">
                 <?php 
