@@ -6,6 +6,8 @@ include_once('PHP/script.php');
 <?php
 // Accueil si user non-enregistré
 if(!isset($_SESSION['pseudo'])) {
+    isset($_GET['unknow'])? $placeholder='Nom inconnu : reessayez !' : $placeholder='Votre pseudo ici';
+
     echo "
         <div class='container text-center my-5 pe-5'>
             <h1 style='color:white'>
@@ -23,7 +25,8 @@ if(!isset($_SESSION['pseudo'])) {
 
         <div class='container text-center d-flex justify-content-center my-5'>
             <form action='traitements/user_login.php' method='get'>
-                <input class='rounded-4' type='text' style='width: 20vw; height: 4vh' name='pseudo'  value='" . (isset($_GET['pseudo'])? $_GET['pseudo'] : '') . "'> <br> <br>
+                <input class='rounded-4' type='text' style='width: 20vw; height: 4vh' name='pseudo'  value='" . (isset($_GET['pseudo'])? $_GET['pseudo'] : '') . "' placeholder='{$placeholder}'>
+                <br> <br>
                 <button class='btn btn-success rounded-0' style='height: 45px; width: 120px' type='submit'>Soumettre</button>
             </form>
         </div>
