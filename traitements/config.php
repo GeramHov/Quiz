@@ -6,15 +6,11 @@ $password = '';
 
 try{
     $db = new PDO( $dns, $user, $password);
-    // echo "connection établie" ;
+    // connection établie
 
 }
 catch (Exception $message){
+    // connexion échouée
     echo "ya un blem <br>" . "<pre>$message</pre>" ;
 }
-
-    $conn = mysqli_connect("127.0.0.1", "root", "", "quiz");
-    if(!$conn) {
-        echo "Database is not connected :(";
-    }
 ?>

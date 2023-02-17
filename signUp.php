@@ -16,7 +16,9 @@
     </div>
 
 <?php
+
 //formulaire pseudo
+
 isset($_GET['login'])? $placeholder="&nbsp;&nbsp;Pseudo existant" : $placeholder="&nbsp;&nbsp;Votre Pseudo ici";
 echo "
     <div class='container text-center mt-5 d-flex justify-content-center'>
@@ -37,6 +39,7 @@ echo "
 
 
 // bouton submit
+
 echo "
             <button class='btn btn-success rounded-0' style='height: 45px; width: 120px' type='submit'>Soumettre</button>
         </form>

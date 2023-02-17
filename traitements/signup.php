@@ -24,7 +24,6 @@ $pseudo = $_GET['pseudo'];
         header('Location: ../index.php');
    }
 
-
    include_once('PHP/header.php');
    include_once('PHP/script.php');
 ?>

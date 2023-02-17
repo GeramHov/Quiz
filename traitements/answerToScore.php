@@ -1,7 +1,9 @@
 <?php
 session_start();
 
+
 // Vérifie bouton 'suivant' non-clické
+
 if ($_GET['answer'] != 'next'){
     // préparation DB pour comparer la réponse cliquée à la réponse correcte
     require_once('../traitements/config.php');
@@ -29,8 +31,3 @@ if ($_GET['answer'] != 'next'){
     header('Location: ../quizpage.php');
     exit();
 }
-
-
-
-
-

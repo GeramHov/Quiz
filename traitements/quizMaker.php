@@ -8,6 +8,7 @@ $query = $db->prepare(" SELECT * FROM questions
                         ORDER BY RAND()
                         LIMIT 10");
 $query -> execute(['theme' => $_SESSION['theme']]);
+
 $questions = $query->fetchAll();
 
 
