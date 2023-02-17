@@ -49,13 +49,14 @@ else {
             if (!isset($_GET['theme'])){
                 // Affichage des choix de questionnaire
                 echo"
-                    <section id='questionsChoice' class='row'>";
+                    <section id='questionsChoice' class='container text-center'>";
                         include_once ('./traitements/choicesEcho.php');
                 echo"</section>
                 <br><br>";
                 // Affichage liste des users
                 echo "
-                    <section id='registeredUsers' class='row col-6 mx-auto mt-5 text-white border border-light'>
+                    <div id='userslist' class='container text-center d-flex justify-content-center text-white py-5 border border-light col-lg-6 col-md-6 col-sm-6'>
+                    <section id='registeredUsers'>
                         <table>
                             <thead>
                                 <tr>
@@ -80,18 +81,18 @@ else {
                         echo"   <tr>
                                     <td>
                                         <u>{$maxScore['pseudo']}</u> : 
-                                        max score {$maxScore['score']} points 
-                                        en {$maxScore['questions_theme']} 
-                                        le {$maxScore['niceDate']}
+                                            <i>&nbsp;&nbsp;max score - {$maxScore['score']} points 
+                                            en {$maxScore['questions_theme']} 
+                                            le {$maxScore['niceDate']}</i>
                                     </td>
                                 </tr>";
                     }
                 }
-
                 
                 echo"   </tbody>
                     </table> 
                 </section>
+                </div>
                 ";
             } else {
                 $_SESSION['theme'] = $_GET['theme'];
@@ -129,7 +130,6 @@ else {
         echo' </section>';
 }
 ?>
-
 
 <?php
 include_once('PHP/script.php');

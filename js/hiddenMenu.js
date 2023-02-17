@@ -1,3 +1,4 @@
+// CONFIGURATION DU MENU CACHEE . AFFICHER / CACHER
 
 const navbarToggle = document.querySelector('.navbar-toggler');
 const burgerMenu = document.getElementById('burgermenu');

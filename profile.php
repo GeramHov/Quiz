@@ -1,7 +1,9 @@
 <?php
     include_once('PHP/header.php');
     include_once('PHP/script.php');
+
     //Ouverture de la bdd et requete meileur score user
+
         require_once('./traitements/config.php');
 
         $query = $db->prepare(" SELECT score, questions_theme FROM scores 
@@ -55,16 +57,14 @@
     ?>
 
 <div class="container text-center d-flex justify-content-center mb-5">
-
     <div class="podium">
-    
-    <div class="podium__item">
+      <div class="podium__item">
         <div class="podium__rank second">
             <strong style="font-size: 30px; color:white">2</strong>
             <p id="scoreparagraph" style="color:black"><?=$bestsScores[1]['pseudo']?></p>
             <p id="scoreparagraph" style="color:black"><?=$bestsScores[1]['score']?> points en <?=$bestsScores[1]['questions_theme']?></p>
-        </div>
       </div>
+    </div>
     
       <div class="podium__item">
           <div class="podium__rank first">
@@ -87,7 +87,7 @@
       </div>
     </div>
 </div>
-<hr>
+        <hr>
         <div class="container text-center my-5">
             
                 <h2 class="mx-4" style="color:white">Vos derniers scores</h2>
@@ -119,7 +119,9 @@
     
                 <g transform="translate(15,70)" >
               <?php
+
          //Ouverture de la bdd et requete scores user
+
             require_once('./traitements/config.php');
 
             if (isset($_GET['userChoice'])) {
@@ -177,14 +179,3 @@
 </svg>
         </div>
 </div>
-
-<!-- Histogramme Scores du profil -->
-
-
-<!-- Meilleurs Scores Globaux-->
-
-    <!-- Ouverture de la DB et requetes Bests Scores -->
-
-
-
-

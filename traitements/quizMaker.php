@@ -9,7 +9,3 @@ $query = $db->prepare(" SELECT * FROM questions
                         LIMIT 10");
 $query -> execute(['theme' => $_SESSION['theme']]);
 $questions = $query->fetchAll();
-// echo"<br> questions :";
-// var_dump($questions[0]['question']);
-// echo"<br>";
-

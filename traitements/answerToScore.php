@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 if ($_GET['answer'] != 'next'){
     require_once('../traitements/config.php');
     $query = $db->prepare(" SELECT * FROM questions 
@@ -25,8 +24,3 @@ if ($_GET['answer'] != 'next'){
     header('Location: ../quizpage.php');
     exit();
 }
-
-
-
-
-

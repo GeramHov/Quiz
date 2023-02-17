@@ -33,15 +33,9 @@ else
     $_SESSION['user_id'] = $resultUsers['id'];
     $_SESSION['avatar'] = $resultUsers['avatar'];
 
-
-
-
     header('Location: ../index.php');
 }
-
 
 include_once('PHP/header.php');
 include_once('PHP/script.php');
 ?>
-
-

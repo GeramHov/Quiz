@@ -26,7 +26,7 @@
                 } else {
                   echo 'IMAGES/user.png';
                 }
-                ?>" alt="avatar" width="60" height="60">
+                ?>" alt="avatar" width="50" height="50">
         </div>
         
         <div class="col d-flex justify-content-center my-4">
@@ -43,7 +43,7 @@
         </div>
         <hr>
         <div class="col d-flex justify-content-center my-4">
-              <a class="display-5" style="text-decoration: none; color:white; font-size: 30px" href="traitements/user_logout.php">Sortie</a>
+              <a class="display-5" style="text-decoration: none; color:white; font-size: 30px" href="traitements/user_logout.php">Quitter</a>
         </div>
         <hr>
         <div class="col d-flex justify-content-center my-4">
@@ -86,7 +86,7 @@
                   }
                 ?>
                 <li><a class="dropdown-item" href="login.php">Connexion</a></li>
-                <li><a class="dropdown-item" href="traitements/user_logout.php">Sortie</a></li>
+                <li><a class="dropdown-item" href="traitements/user_logout.php">Quitter</a></li>
               </ul>
         </div>
           
@@ -105,7 +105,3 @@
           </ul>
       </div>
 </nav>
-
-
-
-

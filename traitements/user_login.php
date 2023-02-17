@@ -3,6 +3,7 @@ session_start();
 include_once "config.php";
 
 // vérification si pseudo existant
+
 $req = $db->prepare("SELECT count(id) FROM users WHERE LOWER(pseudo) = :pseudo");
 $req->execute   ([
                 'pseudo' => strtolower($_GET['pseudo'])
@@ -36,11 +37,9 @@ if($req->fetchColumn() > 0)
 }
 else
 {
-// Pseudo inconnu    $request = $db->prepare("INSERT INTO users (pseudo, avatar) VALUES (:pseudo, :avatar)");
+    //  Pseudo inconnu
 
     header('Location: ../index.php?unknow=ok');
 }
-
-
 
 ?>
