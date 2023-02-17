@@ -19,6 +19,7 @@ if(count($_SESSION['questions']) == 0){
 // initialistaion de variables utiles à l'affichage
 $questionNumberView = $_SESSION['count'] + 1;
 isset($_GET['nextDisplay'])? ($nextDisplay = 'hidden') : ($nextDisplay = 'none');
+isset($_GET['nextDisplay'])? ($nextDisplayTimer = 'none') : ($nextDisplayTimer = 'hidden');
 $a1_color = isset($_GET['a1'])? (($_GET['a1'] == 'success')? 'success' : 'danger') : 'dark';
 $a2_color = isset($_GET['a2'])? (($_GET['a2'] == 'success')? 'success' : 'danger') : 'dark';
 $a3_color = isset($_GET['a3'])? (($_GET['a3'] == 'success')? 'success' : 'danger') : 'dark';
@@ -126,8 +127,8 @@ if ($_SESSION['count'] < 10){
   ";
   // div avec animation css "timer"
   echo "
-    <div class='containerTimer container d-flex justify-content-center my-1'>
-      <div class='progressTimer verticalTimer'>
+    <div class='containerTimer container d-flex justify-content-center my-1' >
+      <div class='progressTimer verticalTimer' style='display:{$nextDisplayTimer}'>
         <div class='progress-barTimer progress-bar-info' role='progressbar'>
         </div>  
       </div>

@@ -45,9 +45,54 @@ else {
             <h3 style="color:white" class="my-3">Choisissez votre thème en dessous</h3>
         </div>
 
-        <section id="questions" class="container text-center my-5 d-flex "> ';
+        <section id="questions" class="container text-center my-5 "> ';
             if (!isset($_GET['theme'])){
-                include_once ('./traitements/choicesEcho.php'); 
+                // Affichage des choix de questionnaire
+                echo"
+                    <section id='questionsChoice' class='row'>";
+                        include_once ('./traitements/choicesEcho.php');
+                echo"</section>
+                <br><br>";
+                // Affichage liste des users
+                echo "
+                    <section id='registeredUsers' class='row col-6 mx-auto mt-5 text-white border border-light'>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th><h4>Users enregistrés</h4></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                ";
+                include_once('./traitements/config.php');
+                $query = $db -> query("SELECT pseudo, id FROM users ORDER BY pseudo ASC");
+                $users = $query->fetchAll();
+                foreach ($users as $user) {
+                    $query = $db->prepare(" SELECT *, DATE_FORMAT(scores.date,'%d/%m/%Y') AS niceDate
+                                            FROM scores
+                                            JOIN users ON users.id = scores.user_id
+                                            WHERE scores.user_id = :user_id
+                                            ORDER BY score DESC
+                                            LIMIT 1
+                                        ");
+                    $query -> execute(['user_id' => $user['id']]);
+                    if ($maxScore = $query->fetch()){
+                        echo"   <tr>
+                                    <td>
+                                        <u>{$maxScore['pseudo']}</u> : 
+                                        max score {$maxScore['score']} points 
+                                        en {$maxScore['questions_theme']} 
+                                        le {$maxScore['niceDate']}
+                                    </td>
+                                </tr>";
+                    }
+                }
+
+                
+                echo"   </tbody>
+                    </table> 
+                </section>
+                ";
             } else {
                 $_SESSION['theme'] = $_GET['theme'];
                 $_SESSION['count'] = 0;
@@ -55,9 +100,11 @@ else {
                 $_SESSION['score'] = 0;
                 echo "
                     <div class='container text-center my-5'>
+
                         <h4 style='color:white'>
                             Vous avez choisi le Quiz {$_SESSION['theme']}
                         </h4>
+
                         <div class='container text-center d-flex justify-content-center my-5'>
                             <div class='row'>
 
@@ -73,6 +120,7 @@ else {
                                         <button class='btn btn-danger rounded-0 ms-4' style='height: 45px; width: 120px' type='submit' value='Annuler'>Annuler</button>
                                     </form>
                                 </div>
+
                             </div>
                         </div>
                     </div>
