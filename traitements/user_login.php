@@ -10,7 +10,7 @@ $req->execute   ([
 
 if($req->fetchColumn() > 0)
 {
-//  Pseudo connu
+//  Pseudo connu, on initialise les variables $_SESSION utiles
    
     $dataBaseUsers = $db -> prepare("SELECT * FROM users WHERE pseudo = :pseudo");
     $dataBaseUsers -> execute   ([
@@ -36,7 +36,7 @@ if($req->fetchColumn() > 0)
 }
 else
 {
-// Pseudo inconnu    $request = $db->prepare("INSERT INTO users (pseudo, avatar) VALUES (:pseudo, :avatar)");
+// Pseudo inconnu on redirige vers la page de connection   
 
     header('Location: ../index.php?unknow=ok');
 }

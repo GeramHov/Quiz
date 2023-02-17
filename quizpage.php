@@ -88,14 +88,14 @@ if ($_SESSION['count'] < 10){
         <input type='hidden' name='time' value='{$currentTime}'>  
         <input type='hidden' name='answer' value='a2'>
         <input type='hidden' name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>
-        <button class='bg-light text-{$a2_color} border border-3 border-{$a2_color}' id='a2' type='submit'>
+        <button class='bg-light text-wrap text-{$a2_color} border border-3 border-{$a2_color}' id='a2' type='submit'>
           <p>
             {$_SESSION['questions'][$_SESSION['count']]['a2']}
           </p>
         </button>
       </form>
 
-      <form class='col col-lg-6 col-md-6 col-sm-6 align-items-center text-center' action='./traitements/answerToScore.php' method='get'>
+      <form class='col col-lg-6 col-md-6 col-sm-6 align-items-center text-center mt-4' action='./traitements/answerToScore.php' method='get'>
         <input type='hidden' name='time' value='{$currentTime}'>
         <input type='hidden' name='answer' value='a3'>
         <input type='hidden' name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>
@@ -106,7 +106,7 @@ if ($_SESSION['count'] < 10){
         </button>
       </form>
 
-      <form class='col col-lg-6 col-md-6 col-sm-6 align-items-center text-center' action='./traitements/answerToScore.php' method='get'>
+      <form class='col col-lg-6 col-md-6 col-sm-6 align-items-center text-center mt-4' action='./traitements/answerToScore.php' method='get'>
         <input type='hidden' name='time' value='{$currentTime}'>
         <input type='hidden' name='answer' value='a4'>
         <input type='hidden' name='id' value='{$_SESSION['questions'][$_SESSION['count']]['id']}'>

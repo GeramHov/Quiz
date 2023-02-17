@@ -1,4 +1,5 @@
 <?php
+// Connection à la base de donée
 $dns = 'mysql:host=127.0.0.1;dbname=quiz';
 $user = 'root';
 $password = '';
