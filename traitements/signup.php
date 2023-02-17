@@ -1,5 +1,6 @@
 <?php
 session_start();
+// Vérification si pseudo déjà en DB ou non
 require_once('config.php');
 
 $pseudo = $_GET['pseudo'];
@@ -10,12 +11,12 @@ $pseudo = $_GET['pseudo'];
 
    if($req->fetchColumn() > 0)
    {
-    //   echo 'Pseudo déjà utilisé !';
+    // 'Pseudo déjà utilisé !' on renvoie vers le formulaire d'inscription
         header('Location: ../login.php?pseudo=' . $pseudo);
    }
    else
    {
-    //   echo 'Pseudo libre :-)';
+    // 'Pseudo libre :-)' on enregistre l'user dans la DB puis renvoie vers l'index
         $request = $db->prepare("INSERT INTO users (pseudo) VALUES (:pseudo)");
         $request->execute([ 'pseudo' => $pseudo
                             ]);

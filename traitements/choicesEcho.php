@@ -1,4 +1,7 @@
 <?php
+
+// Page affichant le choix de thème de quizz s'il n'est pas déjà dans l'url
+
 if (!isset($_GET['theme'])){
     echo '
         <div id="logos" class="row mt-5">
@@ -29,6 +32,8 @@ if (!isset($_GET['theme'])){
         </div>
     ';
 } else {
+    // Si le thème est dans l'url on demande confirmation
+    // Si l'option choisie est d'annuler on reset le GET dans l'url
     switch ($_GET['theme']) {
         case "HTML-CSS" :
             header('Location:../index.php?theme=HTML-CSS');

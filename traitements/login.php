@@ -1,5 +1,6 @@
 <?php
 session_start();
+// Vérification si pseudo déjà attribué ou pas
 require_once('config.php');
 
 $pseudo = $_GET['pseudo'];
@@ -10,12 +11,12 @@ $pseudo = $_GET['pseudo'];
 
    if($req->fetchColumn() > 0)
    {
-    //   echo 'Pseudo déjà utilisé !';
+    // 'Pseudo déjà utilisé !' on renvoie en arriere
         header('Location: ../index.php?login=existant');
    }
    else
    {
-    //   echo 'Pseudo libre :-)';
+    // 'Pseudo libre :-)' l'utilisateur est créé et renvoie vers l'index
         $request = $db->prepare("INSERT INTO users (pseudo) VALUES (:pseudo)");
         $request->execute([ 'pseudo' => $pseudo
                             ]);

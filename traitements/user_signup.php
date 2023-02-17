@@ -10,25 +10,27 @@ $req->execute   ([
 
 if($req->fetchColumn() > 0)
 {
-//   echo 'Pseudo déjà utilisé !';
+// 'Pseudo déjà utilisé !' on renvoie vers le formulaire d'inscrition en spécifiant le pseudo déjà pris
     header('Location: ../login.php?pseudo=' . $_GET['pseudo']);
 }
 else
 {
-//   echo 'Pseudo libre :-)';
+    // 'Pseudo libre :-)';
+    // enregistrment de l'utilisateur en DB
     $request = $db->prepare("INSERT INTO users (pseudo, avatar) VALUES (:pseudo, :avatar)");
     $request->execute   ([ 
                         'pseudo' => $_GET['pseudo'],
                         'avatar' => $_GET['avatar']
                         ]);
 
-
+    // récupération de ses infos (dont celles AUTOINCREMENT)
     $dataBaseUsers = $db -> prepare("SELECT * FROM users WHERE pseudo = :pseudo");
     $dataBaseUsers -> execute   ([
                                 "pseudo" => $_GET['pseudo'],
                                 ]);
     $resultUsers = $dataBaseUsers -> fetch();
 
+    // initialisation des variables $_SESSION utiles
     $_SESSION['pseudo'] = $_GET['pseudo'];
     $_SESSION['user_id'] = $resultUsers['id'];
     $_SESSION['avatar'] = $resultUsers['avatar'];

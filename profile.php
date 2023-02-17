@@ -1,8 +1,9 @@
 <?php
+
     include_once('PHP/header.php');
     include_once('PHP/script.php');
 
-    //Ouverture de la bdd et requete meileur score user
+    //Ouverture de la bdd et requete meilleur score user
 
         require_once('./traitements/config.php');
 
@@ -16,12 +17,13 @@
             $userBestScore = $userBest['score'];
             $userBestQuestionsTheme = $userBest['questions_theme'];
         }
+
 ?>
 
 <div class="container text-center flex-column justify-content-center">
     <img id="avatar" class="rounded-5" src="<?php echo $_SESSION['avatar']?>" alt="" width="70" height="70">
     <h4 id="profiletext" class="mx-2 my-3" style="color:white">Bonjour <span style="font-size: 35px "><?= $pseudo?></span> , bienvenue sur votre profil </h4>
-    <?= ($userBest = $query->fetch())? "<h3 id='topscore' class='my-4' style='color:white'>Votre meilleur score : <i> '{$userBestScore} en {$userBestQuestionsTheme}'</i></h3>" : "";?> 
+    <h3 id='topscore' class='my-4' style='color:white; display:<?=$bestScoreDisplay?>'>Votre meilleur score : <i> <?=$userBestScore?> en <?=$userBestQuestionsTheme?></i></h3> 
     <div class="my-1">
         <h4 id="topscore" >Meilleurs Scores</h4>
         <form id="scoreform" style="width:50vw; padding-top:5vh;margin-left:8vw" action="profile.php" method="get">
@@ -32,7 +34,7 @@
         </form>
     </div>
 
-<?php
+    <?php
     require_once('./traitements/config.php');
 
     if (isset($_GET['bestsChoice'])) {
@@ -55,6 +57,8 @@
     }
     $bestsScores = $query->fetchAll();
     ?>
+
+
 
 <div class="container text-center d-flex justify-content-center mb-5">
     <div class="podium">
@@ -171,11 +175,55 @@
             </g>
             ";
             $i += 80;
-        }
+                }
+                ?>
+            </g>
 
-        ?>
-    </g>
+        </svg>
+    </div>
+</div>
+
+<?php
+if (strtolower($_SESSION['pseudo']) == 'alexandre'){
+    echo "
+    <section id='alexTable' class='container row col-4 mx-auto mt-5 text-white text-center border border-light'>
+        <table>
+            <thead>
+                <tr>
+                    <th><h4>Historique des scores</h4></th>
+                </tr>
+            </thead>
+            <tbody>
+        ";
+        include_once('./traitements/config.php');
+
+        $query = $db->prepare(" SELECT *, DATE_FORMAT(scores.date,'%d/%m/%Y') AS niceDate
+                            FROM scores
+                            JOIN users ON users.id = scores.user_id
+                            WHERE users.pseudo = :pseudo
+                            ORDER BY scores.date DESC
+                        ");
+        $query -> execute(['pseudo' => $_SESSION['pseudo']]);
+        $alexScores = $query -> fetchAll();
+
+        foreach($alexScores as $alexScore) {
+            echo"   <tr>
+                    <td>
+                        {$alexScore['score']} points en {$alexScore['questions_theme']} le {$alexScore['niceDate']}
+                    </td>
+                </tr>";
+        }
+        echo"   </tbody>
+        </table> 
+    </section>
+    ";
+}
+?>
+
+
+
 
 </svg>
         </div>
 </div>
+
